@@ -7,6 +7,7 @@ const keys = require("./config/keys");
 // operates on incoming requests before they are sent to the request handlers
 const bodyParser = require("body-parser");
 require("./models/User");
+require('./models/Survey');
 require("./services/passport");
 
 mongoose.connect(keys.mongoURI, { useNewUrlParser: true });
@@ -34,6 +35,7 @@ app.use(passport.session());
 // returns an function, immediately call the function we passed in i.e app
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 if(process.env.NODE_ENV==='production'){
     // express will serve up production assests like main.js file or main.css file
